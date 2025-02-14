@@ -155,7 +155,10 @@ document.getElementById('launch_button').addEventListener('click', async e => {
             if(details != null){
                 loggerLanding.info('Jvm Details', details)
                 await dlAsync()
-
+                setTimeout(() => {
+                    loggerLanding.info('10초 후 강제 종료')
+                    window.close()
+                }, 10000)
             } else {
                 await asyncSystemScan(server.effectiveJavaOptions)
             }
@@ -311,7 +314,7 @@ refreshMojangStatuses()
 // Refresh statuses every hour. The status page itself refreshes every day so...
 let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 60*60*1000)
 // Set refresh rate to once every 5 minutes.
-let serverStatusListener = setInterval(() => refreshServerStatus(true), 300000)
+let serverStatusListener = setInterval(() => refreshServerStatus(true), 30000)
 
 /**
  * Shows an error overlay, toggles off the launch area.
